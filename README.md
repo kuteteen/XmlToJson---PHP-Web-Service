@@ -1,11 +1,26 @@
 XmlToJson-PHP-Webservice
 ========================
 
-#URL#
+##URL##
 http://resources.cfadigital.com/webservice/xmltojson/XmlToJson.php?xmlUrl=https://www.gov.uk/foreign-travel-advice.atom
 
+## Javascript ##
+access function:
+function parseRSS(url, callback) {
+    $.ajax({
+        url: document.location.protocol + '//resources.cfadigital.com/webservice/xmltojson/XmlToJson.php?xmlUrl=' + encodeURIComponent(url),
+        dataType: 'json',
+        success: function (data) {
+        callback(data);
+        }
+     });
+}
+
+usage:
+parseRSS('https://www.gov.uk/foreign-travel-advice.atom', function(data){console.log(data)})
+
 ## Responce ##
-Faile
+Failed
 false
 Success
 {
