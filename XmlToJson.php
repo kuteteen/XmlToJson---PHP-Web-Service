@@ -13,4 +13,10 @@ class XmlToJson {
 	}
 }
 
-print XmlToJson::Parse($_GET['xmlUrl']);
+if(!filter_var($_GET['xmlUrl'], FILTER_VALIDATE_URL)) {
+	//not valid
+	print 'false';
+} else {
+	// valid
+	print XmlToJson::Parse($_GET['xmlUrl']);
+}
