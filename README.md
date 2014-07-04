@@ -1,4 +1,4 @@
-XmlToJson-PHP-Webservice
+XmlToJson
 ========================
 
 ##URL##
