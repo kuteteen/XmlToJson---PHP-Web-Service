@@ -4,12 +4,25 @@ header('Content-Type: application/json');
 
 class XmlToJson {
 	public function Parse ($url) {
-		$fileContents= file_get_contents($url, false, $context);
-		$fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
-		$fileContents = trim(str_replace('"', "'", $fileContents));
-		$simpleXml = simplexml_load_string($fileContents);
-		$json = json_encode($simpleXml);
-		return $json;
+	     $ch = curl_init();
+             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+             curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+             curl_setopt($ch, CURLOPT_URL, $url);
+             curl_setopt($ch, CURLOPT_VERBOSE, 1);
+             $data = curl_exec($ch);
+            
+             if( $data == false ) return json_encode(array(
+                 'error' => curl_error($ch)
+             ));
+            
+             $xmlObject = simplexml_load_string(
+                 $data,
+                 null,
+                 LIBXML_NOCDATA
+             );
+             
+             return json_encode($xmlObject);
 	}
 }
 
