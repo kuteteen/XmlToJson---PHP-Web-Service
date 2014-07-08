@@ -6,6 +6,7 @@ http://resources.cfadigital.com/webservice/xmltojson/XmlToJson.php?xmlUrl=https:
 
 ## Javascript ##
 access function:
+
     `function parseRSS(url, callback) {
         $.ajax({
             url: document.location.protocol + '//resources.cfadigital.com/webservice/xmltojson/XmlToJson.php?xmlUrl=' + encodeURIComponent(url),
@@ -15,6 +16,7 @@ access function:
             }
         });
     }`
+    
 
 usage:
     `parseRSS('https://www.gov.uk/foreign-travel-advice.atom', function(data){console.log(data)})`
